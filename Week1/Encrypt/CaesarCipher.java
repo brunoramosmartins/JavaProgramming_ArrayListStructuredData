@@ -21,7 +21,7 @@ public class CaesarCipher {
         for (int i = 0; i < encrypted.length(); i++) {
             char currChar = encrypted.charAt(i);
             // Find the index of currChar in alphabet (call it idx)
-            int idx = alphabet.indexOf(currChar);
+            int idx = alphabet.indexOf(Character.toUpperCase(currChar));
             // if currChar is in the alphabet
             if (idx != -1) {
                 // Get the idxth character of shiftedAlphabet (newChar)
@@ -29,7 +29,7 @@ public class CaesarCipher {
                 // Replace the ith character of encrypted with the newChar
                 encrypted.setCharAt(i, newChar);
             }
-            // Otherwise: do nothing
+            // Do nothing
         }
         // Your answer is the String inside of encrypted
         return encrypted.toString();
@@ -37,11 +37,21 @@ public class CaesarCipher {
     
     public void testCaesar() {
         int key = 17;
-        FileResource fr = new FileResource();
-        String message = fr.asString();
-        String encrypted = encrypt(message, key);
-        System.out.println(encrypted);
-        String decrypted =  encrypt(encrypted, 26 - key);
-        System.out.println(decrypted);        
+        // FileResource fr = new FileResource();
+        // String message = fr.asString();
+        // String encrypted = encrypt(message, key);
+        // System.out.println(encrypted);
+        // String decrypted =  encrypt(encrypted, 26 - key);
+        // System.out.println(decrypted);
+        
+        if (!encrypt("FIRST LEGION ATTACK EAST FLANK!", 23).equals("CFOPQ IBDFLK XQQXZH BXPQ CIXKH!")) {
+            System.out.println("encrypt(\"FIRST LEGION ATTACK EAST FLANK\", 23) failed!");
+            System.out.println("  output: " + encrypt("FIRST LEGION ATTACK EAST FLANK", 23));
+            System.out.println("expected: CFOPQ IBDFLK XQQXZH BXPQ CIXKH!");
+        }
+        
+        else {
+            System.out.println("All test pass!");
+        }
     }
 }

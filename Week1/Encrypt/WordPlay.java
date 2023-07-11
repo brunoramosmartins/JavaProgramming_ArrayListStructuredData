@@ -1,6 +1,6 @@
 
 /**
- * Escreva a descrição da classe WordPlay aqui.
+ * String Manipulation and Character Changes.
  * 
  * @author Bruno Ramos Martins 
  * @version 10-07-2023
@@ -32,12 +32,12 @@ public class WordPlay {
         
         for (int i = 0; i < phrase.length(); i++) {
             char currChar = newPhrase.charAt(i);
-            if (isVowel(currChar)) {
-                if (i % 2 != 0) {
+            if ((Character.toLowerCase(currChar)) == (Character.toLowerCase(ch))) {
+                if (i % 2 == 0) {
                     newPhrase.setCharAt(i, '*');
                 }
                 else {
-                    newPhrase.setCharAt(i, ch);
+                    newPhrase.setCharAt(i, '+');
                 }
             }
         }
@@ -71,10 +71,33 @@ public class WordPlay {
             System.out.println("replaceVowels(\"Hello World\", '*') failed!");
         }
         else if (!replaceVowels("AaBbCcDdEe", '#').equals("##BbCcDd##")) {
-            System.out.println("replaceVowels(\"Hello World\", '*') failed!");
+            System.out.println("replaceVowels(\"AaBbCcDdEe\", '#') failed!");
         }
         else {
             System.out.println("All test pass!");
         }
+    }
+    
+    // test emphasize(phrase, ch)
+    public void testEmphasize() {
+        if (!emphasize("dna ctgaaactga", 'a').equals("dn* ctg+*+ctg+")) {
+            System.out.println("emphasize(\"dna ctgaaactga\", 'a') failed!");
+            System.out.println("  output: " + emphasize("dna ctgaaactga", 'a'));
+            System.out.println("expected: dn* ctg+*+ctg+");
+        }
+        else if (!emphasize("Mary Bella Abracadabra", 'a').equals("M+ry Bell+ +br*c*d*br+")) {
+            System.out.println("emphasize(\"Mary Bella Abracadabra\", 'a') failed!");
+            System.out.println("  output: " + emphasize("Mary Bella Abracadabra", 'a'));
+            System.out.println("expected: M+ry Bell+ +br*c*d*br+");
+        }
+        else {
+            System.out.println("All test pass!");
+        }
+    }
+    
+    public void allTest() {
+        testIsVowel();
+        testReplaceVowels();
+        testEmphasize();
     }
 }
