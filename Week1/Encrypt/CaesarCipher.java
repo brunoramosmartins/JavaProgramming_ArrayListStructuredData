@@ -17,23 +17,31 @@ public class CaesarCipher {
         // Make a StringBuilder with message (encrypted)
         StringBuilder encrypted = new StringBuilder(input);
         // Write down the alphabet
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String alphabetLower = "abcdefghijklmnopqrstuvwxyz";
         // Compute the shifted alphabet
-        String shiftedAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
+        String shiftedAlphabetUpper = alphabetUpper.substring(key) + alphabetUpper.substring(0, key);
+        String shiftedAlphabetLower = alphabetLower.substring(key) + alphabetLower.substring(0, key);
         
         // Count from 0 to < length of encrypted, (call it i)
         for (int i = 0; i < encrypted.length(); i++) {
             char currChar = encrypted.charAt(i);
             // Find the index of currChar in alphabet (call it idx)
-            int idx = alphabet.indexOf(Character.toUpperCase(currChar));
-            // if currChar is in the alphabet
+            int idx = alphabetLower.indexOf(currChar);
             if (idx != -1) {
                 // Get the idxth character of shiftedAlphabet (newChar)
-                char newChar = shiftedAlphabet.charAt(idx);
+                char newChar = shiftedAlphabetLower.charAt(idx);
+                // Replace the ith character of encrypted with the newChar
+                encrypted.setCharAt(i, newChar);                
+            }
+            idx = alphabetUpper.indexOf(currChar);
+            // if currChar is in the alphabet UpperCase
+            if (idx != -1) {
+                // Get the idxth character of shiftedAlphabet (newChar)
+                char newChar = shiftedAlphabetUpper.charAt(idx);
                 // Replace the ith character of encrypted with the newChar
                 encrypted.setCharAt(i, newChar);
             }
-            // Do nothing
         }
         // Your answer is the String inside of encrypted
         return encrypted.toString();
