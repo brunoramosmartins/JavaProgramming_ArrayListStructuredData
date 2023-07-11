@@ -1,6 +1,10 @@
 
 /**
- * Escreva a descrição da classe CaesarCipher aqui.
+ * The Caesar Cipher simulation program is designed to encrypt and decrypt
+ * messages using the famous Caesar Cipher algorithm. The Caesar Cipher is 
+ * a substitution cipher that involves shifting the letters of the alphabet 
+ * by a fixed number of positions. In this program, the user can specify the 
+ * number of positions to shift the letters.
  * 
  * @author Bruno Ramos Martins 
  * @version 09/07/2023
@@ -35,6 +39,10 @@ public class CaesarCipher {
         return encrypted.toString();
     }
     
+    public void encryptTwoKeys(String input, int key1, int key2) {
+        
+    }
+    
     public void testCaesar() {
         int key = 17;
         // FileResource fr = new FileResource();
@@ -49,7 +57,16 @@ public class CaesarCipher {
             System.out.println("  output: " + encrypt("FIRST LEGION ATTACK EAST FLANK", 23));
             System.out.println("expected: CFOPQ IBDFLK XQQXZH BXPQ CIXKH!");
         }
-        
+        else if (!encrypt("First Legion", 23).equals("Cfopq Ibdflk")) {
+            System.out.println("encrypt(\"First Legion\", 23) failed!");
+            System.out.println("  output: " + encrypt("First Legion", 23));
+            System.out.println("expected: Cfopq Ibdflk");
+        }
+        else if (!encrypt("First Legion", 17).equals("Wzijk Cvxzfe")) {
+            System.out.println("encrypt(\"First Legion\", 17) failed!");
+            System.out.println("  output: " + encrypt("First Legion", 17));
+            System.out.println("expected: Wzijk Cvxzfe");
+        }
         else {
             System.out.println("All test pass!");
         }
