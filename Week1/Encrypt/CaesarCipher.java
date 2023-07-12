@@ -101,4 +101,12 @@ public class CaesarCipher {
             System.out.println("All test pass!");
         }
     }
+    
+    public void answerCaesarCipher() {
+        // Q5
+        String text = "At noon be in the conference room with your hat on for a surprise party. YELL LOUD!";
+        System.out.println(encrypt(text,15));
+        // Q6
+        System.out.println(encryptTwoKeys(text, 8, 21));
+    }
 }
