@@ -47,8 +47,25 @@ public class CaesarCipher {
         return encrypted.toString();
     }
     
-    public void encryptTwoKeys(String input, int key1, int key2) {
+    public String encryptTwoKeys(String input, int key1, int key2) {
+        // Make a StringBuilder with message (encrypted)
+        StringBuilder encrypted = new StringBuilder(input);
         
+        for (int i = 0; i < input.length(); i++) {
+            char currChar = encrypted.charAt(i);
+            String currString = String.valueOf(currChar);
+            String cryptString;
+            if (i % 2 == 0) {
+                cryptString = encrypt(currString, key1);
+            }
+            else {
+                cryptString = encrypt(currString, key2);               
+            }
+            
+            encrypted.setCharAt(i, cryptString.charAt(0));
+        }
+                
+        return encrypted.toString();
     }
     
     public void testCaesar() {
@@ -74,6 +91,11 @@ public class CaesarCipher {
             System.out.println("encrypt(\"First Legion\", 17) failed!");
             System.out.println("  output: " + encrypt("First Legion", 17));
             System.out.println("expected: Wzijk Cvxzfe");
+        }
+        else if (!encryptTwoKeys("First Legion", 23, 17).equals("Czojq Ivdzle")) {
+            System.out.println("encryptTwoKeys(\"First Legion\", 23, 17) failed!");
+            System.out.println("  output: " + encryptTwoKeys("First Legion", 23, 17));
+            System.out.println("expected: Czojq Ivdzle");
         }
         else {
             System.out.println("All test pass!");
